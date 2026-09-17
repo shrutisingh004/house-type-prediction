@@ -22,7 +22,7 @@ class Features(BaseModel):
     longitude: float = Field(..., ge=-180, le=180, description="Longitude coordinate")
     price: float = Field(..., gt=0, description="Price per night, must be positive")
     minimum_nights: int = Field(..., ge=1, le=365, description="Minimum nights required for booking")
-    number_of_reviews: int = Field(..., ge=0, dpipescription="Total number of reviews")
+    number_of_reviews: int = Field(..., ge=0, description="Total number of reviews")
     reviews_per_month: float = Field(..., ge=0, description="Average reviews per month")
     calculated_host_listings_count: int = Field(..., ge=0, description="Number of listings by this host")
     availability_365: int = Field(..., ge=0, le=365, description="Days available out of 365")
@@ -34,7 +34,7 @@ def greet():
     return "Welcome"
 
 @app.post('/predict')
-def predict(features):
+def predict(features: Features):
     row = pd.DataFrame([features.dict()], columns=COLUMNS)
     prediction = model.predict(row)
     probability = model.predict_proba(row)
