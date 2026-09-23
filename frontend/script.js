@@ -48,7 +48,7 @@ form.addEventListener('submit', async (e) => {
     neighbourhood: document.getElementById('neighbourhood').value
   };
 
-  const apiUrl = 'http://localhost:8000/predict';
+  const apiUrl = 'https://house-type-prediction.onrender.com';
 
   goBtn.disabled = true;
   goBtn.textContent = 'Predicting…';
