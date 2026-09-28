@@ -4,6 +4,17 @@ from pydantic import BaseModel, Field
 import joblib
 from fastapi.middleware.cors import CORSMiddleware
 
+from huggingface_hub import hf_hub_download
+
+model_path = hf_hub_download(
+    repo_id="shrutisingh004/house-type-model",
+    filename="model.pkl"
+)
+
+model = joblib.load(model_path)
+
+# model = joblib.load("model.pkl")
+
 app = FastAPI()
 
 app.add_middleware(
@@ -14,8 +25,6 @@ app.add_middleware(
 )
 
 COLUMNS = ["latitude", "longitude", "price", "minimum_nights", "number_of_reviews", "reviews_per_month", "calculated_host_listings_count", "availability_365", "neighbourhood_group", "neighbourhood"]
-
-model = joblib.load("model.pkl")
 
 class Features(BaseModel):
     latitude: float  = Field(..., ge=-90, le=90, description="Latitude must be between -90 and 90")
