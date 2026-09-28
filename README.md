@@ -20,10 +20,6 @@
 
 ---
 
-A machine learning web app that predicts the **room type** of a New York City short-term rental listing (for example, an entire home, a private room, or a shared room) from details such as location, price, reviews, and availability.
-
----
-
 ## Overview
 
 Given the details of a listing, the trained model classifies what type of room is being offered and returns a confidence score for every class. The project is split into three parts:
